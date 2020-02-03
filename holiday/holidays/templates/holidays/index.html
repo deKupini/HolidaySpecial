@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Holidays</title>
+</head>
+<body>
+{% for c in countries %}
+<button type="button"><a href="{% url 'index' country_code=c.code year=year %}">{{c.name}}</a></button>
+{% endfor %}
+{% for y in years %}
+{% if y != year %}
+<a href="{% url 'index' country_code=country_code year=y %}">{{y}}</a>
+{% endif %}
+{% endfor %}
+    <table style="width:100%">
+    {% for h in holidays %}
+      <tr>
+        <th>{{ h.name }}</th>
+        <th>{{ h.local_name }}</th>
+        <th>{{ h.holiday_date }}</th>
+      </tr>
+    {% endfor %}
+    </table>
+</body>
+</html>
